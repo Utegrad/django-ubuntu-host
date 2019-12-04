@@ -1,0 +1,8 @@
+---
+
+- name: Install database packages
+  become: True
+  package: name={{ item }} state=latest
+  with_items: "{{ packages }}"
+
+
