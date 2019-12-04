@@ -6,8 +6,8 @@ After=network.target
 [Service]
 User={{ django_user }}
 Group=www-data
-WorkingDirectory={{ git_dest }}
-ExecStart={{ git_dest }}/venv/bin/gunicorn \
+WorkingDirectory=/home/{{ django_user }}/webapp/{{ application_name }}
+ExecStart=/home/{{ django_user }}/webapp/{{ application_name }}/venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
