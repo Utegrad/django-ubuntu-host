@@ -94,10 +94,8 @@
 
 - name: Install virtualenv
   become: True
-  become_user: "{{ django_user }}"
   pip:
     name: virtualenv
-    extra_args: "--user"
 
 - name: Create virtualenv
   become: True
