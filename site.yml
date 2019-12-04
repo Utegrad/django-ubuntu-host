@@ -3,6 +3,7 @@
 - name: Django Setup
   hosts: linodes
   roles:
-    - application
+    - Ubuntu
+    - nginx
     - database
     

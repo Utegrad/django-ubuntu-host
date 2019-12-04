@@ -1,0 +1,7 @@
+---
+
+application_path: ~/webapp
+git_repo: git@github.com:Utegrad/vasaargenti.git
+git_dest: "{{ application_path }}/{{ application_name }}"
+django_user_password: "{{ vault_django_user_password }}"
+virtualenv_python: /usr/bin/python3

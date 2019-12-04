@@ -4,10 +4,3 @@
   become: True
   service: name=sshd enabled=yes state=restarted
 
-- name: restart nginx
-  become: True
-  service:
-    name: nginx
-    state: restarted
-
-
