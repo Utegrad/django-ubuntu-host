@@ -1,5 +1,9 @@
 ---
 
+application_name: vasaargenti
 django_user: django
 django_user_password: "{{ vault_django_user_password }}"
+application_path: ~/webapp
+git_repo: git@github.com:Utegrad/vasaargenti.git
+git_dest: "{{ application_path }}/{{ application_name }}"
 

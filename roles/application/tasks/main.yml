@@ -76,3 +76,20 @@
     mode: '0600'
     decrypt: yes
 
+- name: Application Directory
+  become: True
+  become_user: "{{ django_user }}"
+  file:
+    path: "{{ application_path }}"
+    state: directory
+    mode: '0755'
+
+- name: Checkout Git code
+  become: True
+  become_user: "{{ django_user }}"
+  git:
+    repo: "{{ git_repo }}"
+    dest: "{{ git_dest }}"
+    ssh_opts: "-o StrictHostKeyChecking=no"
+
+
