@@ -1,0 +1,8 @@
+---
+
+# Default packages for postgresql server
+packages:
+    - libpq-dev
+    - postgresql
+    - postgresql-contrib
+

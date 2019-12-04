@@ -1,0 +1,34 @@
+#$v0.02$
+#{{ ansible_managed }}
+AcceptEnv LANG LC_*
+ChallengeResponseAuthentication no
+GSSAPIAuthentication yes
+GSSAPICleanupCredentials yes
+HostbasedAuthentication no
+HostKey /etc/ssh/ssh_host_dsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+IgnoreRhosts yes
+KeyRegenerationInterval 3600
+LoginGraceTime 120
+LogLevel INFO
+PermitEmptyPasswords no
+PermitRootLogin no
+Port 22
+PrintLastLog yes
+PrintMotd no
+Protocol 2
+PubkeyAuthentication yes
+RhostsRSAAuthentication no
+RSAAuthentication yes
+ServerKeyBits 1024
+StrictModes yes
+Subsystem sftp /usr/lib/openssh/sftp-server
+SyslogFacility AUTH
+TCPKeepAlive yes
+UsePAM yes
+UsePrivilegeSeparation yes
+X11DisplayOffset 10
+X11Forwarding no
+

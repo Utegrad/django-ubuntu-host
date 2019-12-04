@@ -1,0 +1,8 @@
+---
+
+- name: Django Setup
+  hosts: linodes
+  roles:
+    - application
+    - database
+    

@@ -1,0 +1,8 @@
+---
+
+# Default packages for an application server
+packages:
+    - python3-pip
+    - python3-dev
+    - nginx
+
