@@ -1,0 +1,13 @@
+server {
+  listen 80;
+  server_name {{ app_fqdn }};
+
+  location = /favicon.ico { access_log off; log_not_found off; }
+  location /static/ {
+    root /home/{{ django_user }}/webapp/{{ application_name }}/staticfiles;
+  }
+  location / {
+    include proxy_params;
+    proxy_pass http://unix:/run/gunicorn.sock;
+  }
+}

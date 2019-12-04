@@ -2,6 +2,7 @@
 
 virtualenv_python: /usr/bin/python3
 application_name: vasaargenti
+app_fqdn: www.vasaargenti.com
 django_user: django
 django_user_password: "{{ vault_django_user_password }}"
 application_path: ~/webapp
