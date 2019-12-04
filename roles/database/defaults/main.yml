@@ -5,4 +5,5 @@ packages:
   - libpq-dev
   - postgresql
   - postgresql-contrib
+  - python-psycopg2
 

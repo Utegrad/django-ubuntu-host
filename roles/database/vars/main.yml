@@ -1,0 +1,8 @@
+---
+
+database_name: "vasaargenti_db"
+database_user: "vasaargenti_user"
+database_user_password: "{{ vault_database_user_password }}"
+postgresql_user: postgres
+postgresql_group: postgres
+
