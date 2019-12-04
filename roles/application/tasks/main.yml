@@ -92,4 +92,38 @@
     dest: "{{ git_dest }}"
     ssh_opts: "-o StrictHostKeyChecking=no"
 
+- name: Install virtualenv
+  become: True
+  become_user: "{{ django_user }}"
+  pip:
+    name: virtualenv
+    extra_args: "--user"
+
+- name: Create virtualenv
+  become: True
+  become_user: "{{ django_user }}"
+  pip:
+    requirements: "{{ git_dest }}/requirements.txt"
+    virtualenv: "{{ git_dest }}/venv"
+    virtualenv_python: "{{ virtualenv_python }}"
+
+- name: gunicorn.service file
+  become: True
+  template:
+    src: gunicorn.service.j2
+    dest: /etc/systemd/system/gunicorn.service
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: gunicorn.socket file
+  become: True
+  copy:
+    src: gunicorn.socket
+    dest: /etc/systemd/system/gunicorn.socket
+    owner: root
+    group: root
+    mode: '0644'
+    
+
 

@@ -1,5 +1,6 @@
 ---
 
+virtualenv_python: /usr/bin/python3
 application_name: vasaargenti
 django_user: django
 django_user_password: "{{ vault_django_user_password }}"
