@@ -113,6 +113,7 @@
     owner: root
     group: root
     mode: '0644'
+  register: gunicorn_service
 
 - name: gunicorn.socket file
   become: True
@@ -122,6 +123,17 @@
     owner: root
     group: root
     mode: '0644'
+  register: gunicorn_socket
+
+- name: Restart gunicorn and systemd daemon
+  systemd:
+    daemon_reload: yes
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - gunicorn.socket
+    - gunicorn.service
+  when: gunicorn_socket.changed or gunicorn_service.changed
 
 - name: remove default nginx conf file
   become: True
