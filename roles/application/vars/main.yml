@@ -1,0 +1,5 @@
+---
+
+django_user: django
+django_user_password: "{{ vault_django_user_password }}"
+

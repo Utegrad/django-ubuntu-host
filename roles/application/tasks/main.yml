@@ -45,3 +45,34 @@
     validate='/usr/sbin/sshd -T -f %s'
   notify: restart sshd
 
+- name: Import application vault variables
+  include_vars: "{{ item }}"
+  with_items:
+    - "vault.yml"
+
+- name: Create Django User
+  become: True
+  user:
+    name: "{{ django_user }}"
+    state: present
+    create_home: yes
+    password: "{{ django_user_password }}"
+
+- name: Django user .ssh directory
+  become: True
+  become_user: "{{ django_user }}"
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: '0700'
+
+- name: Django User Deploy Key
+  become: yes
+  become_user: "{{ django_user }}"
+  copy:
+    src: roles/application/files/deploy_key
+    dest: ~/.ssh/id_rsa
+    owner: "{{ django_user }}"
+    mode: '0600'
+    decrypt: yes
+
