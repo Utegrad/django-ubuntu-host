@@ -4,3 +4,9 @@
   become: True
   service: name=sshd enabled=yes state=restarted
 
+- name: restart rsyslog
+  become: True
+  systemd:
+    name: rsyslog
+    state: restarted
+

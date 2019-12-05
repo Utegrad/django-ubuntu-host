@@ -32,6 +32,15 @@
   become: True
   ufw: rule=deny from_ip=0.0.0.0 to_ip=224.0.0.1
 
+- name: Disable UFW log to syslog
+  become: True
+  lineinfile:
+    path: /etc/rsyslog.d/20-ufw.conf
+    state: present
+    regexp: '^& stop'
+    line: "& stop"
+  notify: restart rsyslog
+
 - name: UFW Enabled
   become: True
   ufw: state=enabled
