@@ -5,3 +5,14 @@ git_repo: git@github.com:Utegrad/vasaargenti.git
 git_dest: "{{ application_path }}/{{ application_name }}"
 django_user_password: "{{ vault_django_user_password }}"
 virtualenv_python: /usr/bin/python3
+application_settings_dir: "{{ git_dest }}/django_budget"
+
+# Environment variables
+aws_storage_bucket_name: django-buckets-1a2b3c
+account_login_from_email: "{{ vault_account_login_from_email }}"
+aws_access_key_id: "{{ vault_aws_access_key_id }}"
+aws_secret_access_key: "{{ vault_aws_secret_access_key }}"
+database_url: "{{ vault_database_url }}"
+rollbar_token: "{{ vault_rollbar_token }}"
+secret_key: "{{ vault_secret_key }}"
+

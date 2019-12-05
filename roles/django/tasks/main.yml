@@ -25,7 +25,7 @@
   become: yes
   become_user: "{{ django_user }}"
   copy:
-    src: roles/application/files/deploy_key
+    src: deploy_key
     dest: ~/.ssh/id_rsa
     owner: "{{ django_user }}"
     mode: '0600'
@@ -60,6 +60,15 @@
     virtualenv: "{{ git_dest }}/venv"
     virtualenv_python: "{{ virtualenv_python }}"
 
+- name: django .env file
+  become: True
+  become_user: "{{ django_user }}"
+  template:
+    src: env.j2
+    dest: "{{ application_settings_dir }}/.env"
+    mode: '0644'
+  notify: restart gunicorn
+
 - name: gunicorn.service file
   become: True
   template:
@@ -68,7 +77,7 @@
     owner: root
     group: root
     mode: '0644'
-  register: gunicorn_service
+  notify: restart gunicorn
 
 - name: gunicorn.socket file
   become: True
@@ -78,16 +87,14 @@
     owner: root
     group: root
     mode: '0644'
-  register: gunicorn_socket
+  notify: restart gunicorn
 
-- name: Restart gunicorn and systemd daemon
+- name: gunicorn enabled
+  become: True
   systemd:
-    daemon_reload: yes
     name: "{{ item }}"
-    state: restarted
+    enabled: yes
   with_items:
     - gunicorn.socket
     - gunicorn.service
-  when: gunicorn_socket.changed or gunicorn_service.changed
-
 

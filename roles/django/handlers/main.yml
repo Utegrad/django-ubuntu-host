@@ -1,0 +1,12 @@
+---
+
+- name: restart gunicorn
+  become: True
+  systemd:
+    daemon_reload: yes
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - gunicorn
+
+

@@ -5,5 +5,6 @@
   roles:
     - Ubuntu
     - nginx
+    - django
     - database
     
