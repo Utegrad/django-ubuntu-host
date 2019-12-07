@@ -1,2 +1,5 @@
 ---
 
+certificate_file_name: vasaargenti.com.crt
+certificate_key_name: vasaargenti.com.key
+

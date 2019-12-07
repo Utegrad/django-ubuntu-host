@@ -15,6 +15,46 @@
     owner: root
     group: root
     mode: '0644'
+    backup: yes
+  notify: restart nginx
+
+- name: SSL conf snippet
+  become: yes
+  copy:
+    src: ssl-params.conf
+    dest: /etc/nginx/snippets/ssl-params.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart nginx
+
+- name: DHE Parameter file
+  become: yes
+  copy:
+    src: dhparam.pem
+    dest: /etc/ssl/certs/dhparam.pem
+    decrypt: yes
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart nginx
+
+- name: SSL Certificate File
+  become: yes
+  copy:
+    src: "{{ certificate_file_name }}"
+    dest: "/etc/ssl/certs/{{ certificate_file_name }}"
+  notify: restart nginx
+
+- name: SSL Private Key File
+  become: yes
+  copy:
+    src: "{{ certificate_key_name }}"
+    dest: "/etc/ssl/private/{{ certificate_key_name }}"
+    owner: root
+    group: root
+    mode: '0640'
+    decrypt: yes
   notify: restart nginx
 
 - name: Symlink nginx conf file
